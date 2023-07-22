@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <iostream>
 
-int main(void) // remember, use -lcurl when compiling and compile on a linux platform like wsl
+void curl_call(string toCall)
 {
     CURL *hnd = curl_easy_init();
 
     curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
     curl_easy_setopt(hnd, CURLOPT_WRITEDATA, stdout);
-    curl_easy_setopt(hnd, CURLOPT_URL, "https://trading-api.kalshi.com/trade-api/v2/exchange/status");
+    curl_easy_setopt(hnd, CURLOPT_URL, toCall);
 
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, "accept: application/json");
@@ -18,4 +18,9 @@ int main(void) // remember, use -lcurl when compiling and compile on a linux pla
     CURLcode ret = curl_easy_perform(hnd);
 
     return EXIT_SUCCESS;
+}
+
+int main(void) // remember, use -lcurl when compiling and compile on a linux platform like wsl
+{
+    curl_call("https://trading-api.kalshi.com/trade-api/v2/exchange/status");
 }
