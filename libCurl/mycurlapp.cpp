@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-//Am going to Vancouver right now
+
 void curl_call(string toCall)
 {
     CURL *hnd = curl_easy_init();
@@ -17,7 +17,7 @@ void curl_call(string toCall)
 
     CURLcode ret = curl_easy_perform(hnd);
 
-    return EXIT_SUCCESS;
+    return;
 }
 
 int main(void) // remember, use -lcurl when compiling and compile on a linux platform like wsl
